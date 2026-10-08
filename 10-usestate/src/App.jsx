@@ -5,7 +5,7 @@ const App = () => {
   const [user, setuser] = useState({name: "Roshan", age: "24"});
 
   const changeUser = () => {
-    setuser(prev => ({...prev, name: "Bhavesh", age: "23"}))
+    setuser(prev => ({...prev, name: "havesh", age: "23"}))
   }
 
   return (
