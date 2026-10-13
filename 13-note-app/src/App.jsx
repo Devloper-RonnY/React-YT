@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 
 const App = () => {
-  const [title, setTitle] = useState('')
-  const [desc, setDesc] = useState('')
-  // console.log(title, desc);
-  
-
-  // const handleInput = (e) => {
-  //   setTitle(e) 
-  // }
-  // const handleDesc = (e) => {
-  //   setDesc(e) 
-  // }
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [tasks, setTasks] = useState([]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(title, desc);
 
+    const copyTasks = [...tasks]; // spread all previous tasks into new variable
+    copyTasks.push({ title, desc }); // push state into that variable
+    setTasks(copyTasks); // set this variable into state using state function
+    
 
-    setTitle("")
-    setDesc("")
+    setTitle("");
+    setDesc("");
   };
-  
+
   return (
     <div className="flex flex-col justify-center p-60 h-screen bg-black text-white">
       <form className="flex" onSubmit={submitHandler}>
@@ -43,7 +38,7 @@ const App = () => {
             onChange={(e) => setDesc(e.target.value)}
           />
 
-          <button className="bg-white text-black px-5 py-2 rounded">
+          <button className="bg-white text-black px-5 py-2 rounded active:scale-95">
             Add Notes
           </button>
         </div>
@@ -56,11 +51,14 @@ const App = () => {
 
       <h1 className="pt-2 text-xl font-bold">Recent Notes</h1>
       <div className="flex flex-wrap m-5 gap-5">
-        <div className="h-45 w-45 bg-white rounded-2xl">
-            
-        </div>
-        <div className="h-45 w-45 bg-white rounded-2xl"></div>
-        <div className="h-45 w-45 bg-white rounded-2xl"></div>
+
+        {tasks.map((elem, idx) => (
+          
+          <div key={idx} className="h-40 w-40 pl-2 bg-green-400 rounded-xl">
+            <h3 className="text-black font-bold text-xl">{elem.title}</h3>
+            <h4 className="text-black text-xl">{elem.desc}</h4>
+          </div>
+        ))}
       </div>
     </div>
   );
