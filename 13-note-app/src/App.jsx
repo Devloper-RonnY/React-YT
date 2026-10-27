@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { X, Check } from 'lucide-react';
 
 const App = () => {
   const [title, setTitle] = useState("");
@@ -17,11 +18,17 @@ const App = () => {
     setDesc("");
   };
 
+  const deleteNotes = (idx) => {
+    let copyNotes = [...tasks]
+    copyNotes.splice(idx,1);
+    setTasks(copyNotes);
+  }
+
   return (
     <div className="flex flex-col justify-center p-60 h-screen bg-black text-white">
       <form className="flex" onSubmit={submitHandler}>
         <div className="flex flex-col justify-center ite gap-5">
-          <h1 className=" text-xl font-bold">Add Notes</h1>
+         <h1 className=" text-xl font-bold">Add Notes</h1>
           <input
             className="text-white border-2 font-medium px-5 w-150 py-2 rounded outline-none"
             type="text"
@@ -54,10 +61,12 @@ const App = () => {
 
         {tasks.map((elem, idx) => (
           
-          <div key={idx} className="h-40 w-40 pl-2 bg-green-400 rounded-xl">
+          <div key={idx} className="relative h-40 w-40 rounded-xl pl-2 bg-amber-100">
             <h3 className="text-black font-bold text-xl">{elem.title}</h3>
             <h4 className="text-black text-xl">{elem.desc}</h4>
-          </div>
+            <button onClick={() => deleteNotes(idx)} 
+            className="text-white bg-red-600 mt-15 rounded w-35 active:scale-95" >Delete</button>
+          </div>            
         ))}
       </div>
     </div>
