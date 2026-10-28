@@ -4,7 +4,9 @@ import { X, Check } from 'lucide-react';
 const App = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    return JSON.parse(localStorage.getItem("tasks")) || [];
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -12,7 +14,8 @@ const App = () => {
     const copyTasks = [...tasks]; // spread all previous tasks into new variable
     copyTasks.push({ title, desc }); // push state into that variable
     setTasks(copyTasks); // set this variable into state using state function
-    
+
+    localStorage.setItem("tasks", JSON.stringify(copyTasks))
 
     setTitle("");
     setDesc("");
@@ -22,12 +25,13 @@ const App = () => {
     let copyNotes = [...tasks]
     copyNotes.splice(idx,1);
     setTasks(copyNotes);
-  }
 
+    localStorage.setItem("tasks", JSON.stringify(copyNotes));
+  }
   return (
     <div className="flex flex-col justify-center p-60 h-screen bg-black text-white">
       <form className="flex" onSubmit={submitHandler}>
-        <div className="flex flex-col justify-center ite gap-5">
+        <div className="flex flex-col justify-center gap-5">
          <h1 className=" text-xl font-bold">Add Notes</h1>
           <input
             className="text-white border-2 font-medium px-5 w-150 py-2 rounded outline-none"
@@ -49,11 +53,7 @@ const App = () => {
             Add Notes
           </button>
         </div>
-        <img
-          className="h-62 rotate-y-180"
-          src="https://static.vecteezy.com/system/resources/thumbnails/049/578/155/small/a-black-and-white-drawing-of-a-man-writing-png.png"
-          alt="writing"
-        />
+       
       </form>
 
       <h1 className="pt-2 text-xl font-bold">Recent Notes</h1>
