@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom'
+import {Link} from "react-router-dom"
 
 const Navbar = () => {
   return (
-    <div className='bg-blue-600 h-15 flex px-10 items-center justify-between'>
+    <div className='flex text-xl p-5 bg-blue-300 items-center justify-between'>
       <div>
-        <h1>Sheriyans Coding School</h1>
+         <Link to="/">Car Wale</Link>
       </div>
 
-      <div className='flex gap-10 ab'>
+      <div className='flex gap-10'>
         <Link to="/">Home</Link>
         <Link to="/contact">Contact</Link>
-        <Link to="/about">About US</Link>
+        <Link to="/about">AboutUs</Link>
       </div>
     </div>
   )

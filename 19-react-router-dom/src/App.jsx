@@ -1,18 +1,21 @@
+import React from 'react'
+import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import About from './pages/About'
 import Contact from './pages/Contact'
-import Navbar from './components/Navbar'
+import About from './pages/About'
 
 const App = () => {
   return (
-    <div className='bg-black h-screen text-white'>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-      </Routes>
+    <div className='text-white font-bold h-screen bg-black'>
+        <Navbar />
+      <div className='flex absolute top-[50%] left-[45%] text-4xl'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/about' element={<About />} />
+        </Routes>
+      </div>
     </div>
   )
 }
