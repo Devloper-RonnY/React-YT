@@ -19,13 +19,15 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
-        
+
+        {/* nested routing */}
         <Route path='/products' element={<Products/>}>
         <Route path='men' element={<Men/>}/>
         <Route path='women' element={<Women/>}/>
         <Route path='kids' element={<Kids/>}/>
         </Route>
-        
+
+        {/* error routing */}
         <Route path='*' element={<NotFound />} /> 
       </Routes>
       </div>
